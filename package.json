@@ -1,7 +1,7 @@
 {
   "name": "tsd-def-filter",
   "version": "0.0.1",
-  "description": "TSD filter def stream",
+  "description": "TSD filter Def stream",
   "keywords": [
     "typescript",
     "tsd"
