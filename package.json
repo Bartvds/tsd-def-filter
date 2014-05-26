@@ -1,0 +1,59 @@
+{
+  "name": "tsd-def-filter",
+  "version": "0.0.1",
+  "description": "TSD filter def stream",
+  "keywords": [
+    "typescript",
+    "tsd"
+  ],
+  "homepage": "https://github.com/Bartvds/tsd-def-filter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bartvds/tsd-def-filter.git"
+  },
+  "author": {
+    "name": "Bart van der Schoor",
+    "url": "https://github.com/Bartvds"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.github.com/Bartvds/tsd-def-filter/master/MIT.txt"
+  },
+  "bugs": {
+    "url": "https://github.com/Bartvds/tsd-def-filter/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "prepublish": "grunt prepublish",
+    "test": "grunt test"
+  },
+  "main": "./index.js",
+  "typescript": {
+    "main": "./src/index.ts"
+  },
+  "dependencies": {
+    "minimatch": "^0.3.0",
+    "semver": "^2.3.0",
+    "through2": "^0.4.2"
+  },
+  "devDependencies": {
+    "tsd-repo-fs": "git+https://github.com/Bartvds/tsd-repo-fs",
+    "tsd-def-tree": "git+https://github.com/Bartvds/tsd-def-tree",
+    "chai": "^1.9.1",
+    "findup-sync": "^0.1.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.10.2",
+    "grunt-ts": "^1.11.2",
+    "grunt-ts-clean": "^0.1.0",
+    "grunt-tslint": "~0.4.1",
+    "jshint-path-reporter": "^0.1.3",
+    "mocha-unfunk-reporter": "^0.4.0",
+    "source-map-support": "~0.2.5",
+    "stream-to-array": "^1.0.0",
+    "tslint-path-formatter": "~0.1.0"
+  }
+}
