@@ -3,11 +3,7 @@
 declare module 'tsd-def-tree' {
 	import Repo = require('tsd-repo');
 
-	class DefTree {
-		repo: Repo;
-		constructor(repo: Repo);
-		getDefs(): NodeJS.ReadableStream;
-	}
+	function getDefs(): NodeJS.ReadWriteStream;
 
-	export = DefTree;
+	export = getDefs;
 }

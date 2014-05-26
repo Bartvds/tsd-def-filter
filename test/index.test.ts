@@ -11,7 +11,7 @@ import streamTo = require('stream-to-array');
 import Filter = require('../src/index');
 
 import FSRepo = require('tsd-repo-fs');
-import DefTree = require('tsd-def-tree');
+import getDefs = require('tsd-def-tree');
 
 import filter = require('../src/index');
 
@@ -24,8 +24,7 @@ function sortDefs(arr: filter.Def[]) {
 }
 
 function test(done: (err?: any) => void, filterObj: filter.Filter, expected: filter.Def[]) {
-	var tree = new DefTree(new FSRepo(baseDir));
-	var out = tree.getDefs().pipe(filter(filterObj));
+	var out = new FSRepo(baseDir).getTree().pipe(getDefs()).pipe(filter(filterObj));
 
 	streamTo(out, (err: any, arr: filter.Def[]) => {
 		if (err) {
@@ -120,6 +119,48 @@ describe('project', () => {
 				name: 'bar',
 				semver: '1.2.3-alpha' },
 			{ path: 'bar/bar.d.ts', size: 7, project: 'bar', name: 'bar' }
+		]);
+	});
+});
+
+describe.only('semver', () => {
+	it('greater then', (done) => {
+		test(done, {
+			name: 'foo',
+			semver: '>=0.2'
+		}, [
+			{ path: 'foo/foo-0.2.23.d.ts',
+				size: 12,
+				project: 'foo',
+				name: 'foo',
+				semver: '0.2.23' },
+			{ path: 'foo/foo.d.ts', size: 12, project: 'foo', name: 'foo' }
+		]);
+	});
+
+	it('lesser then', (done) => {
+		test(done, {
+			name: 'foo',
+			semver: '<0.2'
+		}, [
+			{ path: 'foo/foo-0.1.23.d.ts',
+				size: 12,
+				project: 'foo',
+				name: 'foo',
+				semver: '0.1.23' }
+		]);
+	});
+
+	it('between then', (done) => {
+		test(done, {
+			name: 'foo',
+			semver: '>=0.1 <0.2'
+		}, [
+			{ path: 'foo/foo-0.1.23.d.ts',
+				size: 12,
+				project: 'foo',
+				name: 'foo',
+				semver: '0.1.23' }
 		]);
 	});
 });
